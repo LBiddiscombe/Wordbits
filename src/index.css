@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+  padding: 1rem;
+  font-family: 'Alegreya Sans', sans-serif;
+  background: #ec008c; /* fallback for old browsers */
+  background: linear-gradient(to top, #fc6767, #ec008c);
+  background-attachment: fixed;
+}
