@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import './App.css'
 import Trie from '../../modules/Dictionary'
 import WordList from '../WordList'
-import Word from '../Word'
+import TextInput from '../TextInput'
 
 export default class App extends Component {
   state = {
     dictionary: null,
-    letters: 'monopoly'
+    letters: ''
+  }
+
+  onTextInputSubmit = letters => {
+    this.setState({ letters })
   }
 
   componentDidMount() {
@@ -30,9 +34,7 @@ export default class App extends Component {
 
     return (
       <div className="app">
-        <header className="app-header">
-          <Word word={letters} wordIndex={0} />
-        </header>
+        <TextInput handleSubmit={this.onTextInputSubmit} />
         <WordList words={anagrams} />
       </div>
     )

@@ -1,0 +1,21 @@
+.text-input-form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 0.25rem;
+}
+
+.text-input {
+  font-size: 2rem;
+  width: 100%;
+  border: 1px;
+  padding: 0.25rem;
+  font-family: inherit;
+  letter-spacing: 0.25rem;
+}
+
+.submit-button {
+  background-color: #fff;
+  border: 1px;
+  font-family: inherit;
+}
