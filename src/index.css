@@ -1,8 +1,17 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   padding: 1rem;
   font-family: 'Alegreya Sans', sans-serif;
-  background: #ec008c; /* fallback for old browsers */
-  background: linear-gradient(to top, #fc6767, #ec008c);
+  background: #cb2d3e;
+  background: linear-gradient(to top, #ef473a, #cb2d3e);
   background-attachment: fixed;
 }
