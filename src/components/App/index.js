@@ -26,13 +26,14 @@ export default class App extends Component {
 
   render() {
     const { dictionary, letters } = this.state
+    const anagrams = dictionary ? dictionary.getAnagrams(letters, 3) : []
 
     return (
       <div className="app">
         <header className="app-header">
           <Word word={letters} wordIndex={0} />
         </header>
-        <WordList dictionary={dictionary} letters={letters} />
+        <WordList words={anagrams} />
       </div>
     )
   }

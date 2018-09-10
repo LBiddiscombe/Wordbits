@@ -1,11 +1,11 @@
 @keyframes slideInFromLeft {
   0% {
     opacity: 0;
-    transform: translatex(-100px) scale3d(1, 0, 1);
+    transform: translatex(-100px) scale(1, 0);
   }
   100% {
     opacity: 1;
-    transform: translatex(0) scale3d(1, 1, 1);
+    transform: translatex(0) scale(1, 1);
   }
 }
 
