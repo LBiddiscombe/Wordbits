@@ -9,6 +9,10 @@ export default class TextInput extends Component {
   saveToState = e => {
     const { name, value } = e.target
     this.setState({ [name]: value.toUpperCase() })
+    if (value === '') {
+      const { handleSubmit } = this.props
+      handleSubmit('')
+    }
   }
 
   onSubmit = e => {
@@ -22,7 +26,7 @@ export default class TextInput extends Component {
       <form
         className="text-input-form"
         onSubmit={this.onSubmit}
-        autocomplete="off"
+        autoComplete="off"
       >
         <input
           className="text-input"

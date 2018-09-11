@@ -14,4 +14,5 @@ body {
   background: #cb2d3e;
   background: linear-gradient(to top, #ef473a, #cb2d3e);
   background-attachment: fixed;
+  overflow-y: overlay;
 }
