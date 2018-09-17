@@ -23,11 +23,7 @@ export default class TextInput extends Component {
 
   render() {
     return (
-      <form
-        className="text-input-form"
-        onSubmit={this.onSubmit}
-        autoComplete="off"
-      >
+      <form className="text-input-form" onSubmit={this.onSubmit} autoComplete="off">
         <input
           className="text-input"
           name="letters"

@@ -1,0 +1,6 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "eslintIntegration": true,
+  "printWidth": 100
+}
