@@ -10,13 +10,12 @@
 }
 
 .word {
-  --delay: 1000ms;
+  --delay: 0ms;
   display: grid;
   opacity: 0;
-  grid-template-columns: repeat(10, 30px);
-  grid-gap: 0.25rem;
+  grid-template-columns: repeat(10, 32px);
   justify-content: space-between;
-  margin: 0.25rem 0;
+  margin: 0.5rem 0;
   animation: 600ms cubic-bezier(0.645, 0.045, 0.355, 1) var(--delay) 1
     slideInFromLeft;
   animation-fill-mode: forwards;
