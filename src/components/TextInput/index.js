@@ -33,6 +33,7 @@ export default class TextInput extends Component {
           name="letters"
           onChange={this.saveToState}
           value={this.state.letters}
+          maxLength="11"
           autoFocus
         />
         <button type="submit" className="submit-button">
