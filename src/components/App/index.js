@@ -30,20 +30,23 @@ export default class App extends Component {
 
   render() {
     const { dictionary, letters } = this.state
-    let words = []
+    let words = null
+    let duration = 0
 
-    if (dictionary) {
+    if (dictionary && letters.length > 0) {
+      const start = performance.now()
       const wildcardFound = letters.indexOf('.') !== -1
       words = wildcardFound
         ? dictionary.getWordMatches(letters)
         : dictionary.getAnagrams(letters, 3)
+      duration = Math.round(performance.now() - start)
     }
 
     return (
       <div className="app">
         <p className="hint">Try searching 'HELLO' or 'HA.E'</p>
         <TextInput handleSubmit={this.onTextInputSubmit} />
-        <WordList words={words} />
+        <WordList words={words} duration={duration} />
       </div>
     )
   }
