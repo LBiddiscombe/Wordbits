@@ -1,8 +1,9 @@
 .text-input-form {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 300px 50px;
   grid-gap: 0.25rem;
+  justify-content: center;
 }
 
 .text-input {

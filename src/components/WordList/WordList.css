@@ -1,8 +1,7 @@
 .word-list {
+  margin: auto;
+  padding-top: 1rem;
+  max-width: 350px;
   list-style: none;
   padding-left: 0;
-}
-
-li.results {
-  color: #fff;
 }

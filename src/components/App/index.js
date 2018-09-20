@@ -46,6 +46,12 @@ export default class App extends Component {
       <div className="app">
         <p className="hint">Try searching 'HELLO' or 'HA.E'</p>
         <TextInput handleSubmit={this.onTextInputSubmit} />
+        {words && (
+          <p className="results">
+            Found {words.length} results in {duration}
+            ms
+          </p>
+        )}
         <WordList words={words} duration={duration} />
       </div>
     )

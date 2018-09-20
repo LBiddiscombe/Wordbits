@@ -1,11 +1,15 @@
 .app {
-  max-width: 375px;
   margin: 0 auto;
 }
 
 .hint {
-  max-width: 375px;
   text-align: center;
   color: #fff;
   margin: 0 0 0.5rem;
+}
+
+.results {
+  text-align: center;
+  color: #fff;
+  margin: 0.5rem 0 0;
 }
