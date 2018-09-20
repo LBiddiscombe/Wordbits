@@ -12,12 +12,14 @@
   border: 1px;
   padding: 0.25rem;
   font-family: inherit;
-  letter-spacing: 0.25rem;
+  letter-spacing: 0.1rem;
   border-radius: 0px;
+  color: var(--primary-dark);
 }
 
 .submit-button {
-  background-color: #fff;
+  color: var(--primary-dark);
+  background-color: var(--primary-light);
   border: 1px;
   font-family: inherit;
   font-size: 1.5rem;

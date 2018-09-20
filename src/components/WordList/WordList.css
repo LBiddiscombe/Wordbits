@@ -1,7 +1,10 @@
 .word-list {
+  column-width: 8rem;
   margin: auto;
   padding-top: 1rem;
-  max-width: 350px;
+  max-width: 1024px;
   list-style: none;
   padding-left: 0;
+  font-size: 1.5rem;
+  color: var(--primary-light);
 }

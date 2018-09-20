@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './WordList.css'
-import Word from '../Word'
 
 export default class WordList extends Component {
   render() {
@@ -10,7 +9,7 @@ export default class WordList extends Component {
         {words &&
           words.map((word, i) => (
             <li className="word-list-item" key={word}>
-              <Word word={word} wordIndex={i} />
+              {word.toLowerCase()}
             </li>
           ))}
       </ul>

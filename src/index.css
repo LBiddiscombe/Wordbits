@@ -1,3 +1,8 @@
+:root {
+  --primary-light: #feffff;
+  --primary-dark: #323333;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -10,7 +15,7 @@ html {
 body {
   margin: 0;
   padding: 1rem;
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background: #cb2d3e;
   background: linear-gradient(to top, #ef473a, #cb2d3e);
   background-attachment: fixed;
