@@ -5,10 +5,10 @@ export default class WordList extends Component {
   render() {
     const { words } = this.props
     return (
-      <ul className="word-list">
+      <ul className="wordList">
         {words &&
           words.map((word, i) => (
-            <li className="word-list-item" key={word}>
+            <li className="wordList__item" key={word}>
               {word.toLowerCase()}
             </li>
           ))}

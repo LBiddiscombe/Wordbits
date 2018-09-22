@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './TextInput.css'
 
-export default class TextInput extends Component {
+export default class textInputForm extends Component {
   state = {
     letters: ''
   }
@@ -23,16 +23,16 @@ export default class TextInput extends Component {
 
   render() {
     return (
-      <form className="text-input-form" onSubmit={this.onSubmit} autoComplete="off">
+      <form className="textInputForm" onSubmit={this.onSubmit} autoComplete="off">
         <input
-          className="text-input"
+          className="textInputForm__input"
           name="letters"
           onChange={this.saveToState}
           value={this.state.letters}
           maxLength="11"
           autoFocus
         />
-        <button type="submit" className="submit-button">
+        <button type="submit" className="textInputForm__submit">
           GO
         </button>
       </form>

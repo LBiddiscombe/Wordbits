@@ -1,4 +1,4 @@
-.text-input-form {
+.textInputForm {
   width: 100%;
   display: grid;
   grid-template-columns: 300px 50px;
@@ -6,8 +6,9 @@
   justify-content: center;
 }
 
-.text-input {
+.textInputForm__input {
   font-size: 2rem;
+  font-weight: 700;
   width: 100%;
   border: 1px;
   padding: 0.25rem;
@@ -17,10 +18,23 @@
   color: var(--primary-dark);
 }
 
-.submit-button {
+.textInputForm__submit {
   color: var(--primary-dark);
   background-color: var(--primary-light);
   border: 1px;
   font-family: inherit;
   font-size: 1.5rem;
+}
+
+@media (max-width: 376px) {
+  .textInputForm__form {
+    grid-template-columns: 275px 50px;
+  }
+
+  .textInputForm__input {
+    font-size: 1.5rem;
+  }
+  .textInputForm__submit {
+    padding: 0px;
+  }
 }

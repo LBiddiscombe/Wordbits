@@ -44,10 +44,11 @@ export default class App extends Component {
 
     return (
       <div className="app">
-        <p className="hint">Try searching 'HELLO' or 'HA.E'</p>
+        <h1 className="app__header">Wordbits</h1>
+        <p className="app__hint">Try searching 'SOMETHING' or 'HA.E'</p>
         <TextInput handleSubmit={this.onTextInputSubmit} />
         {words && (
-          <p className="results">
+          <p className="app__results">
             Found {words.length} results in {duration}
             ms
           </p>
