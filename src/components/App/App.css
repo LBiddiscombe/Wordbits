@@ -9,9 +9,15 @@
 }
 
 .app__hint {
+  font-size: 1.25rem;
   text-align: center;
   color: var(--primary-light);
   margin: 0 0 0.5rem;
+}
+
+.app__hint--bold {
+  font-size: 1.3rem;
+  font-weight: 900;
 }
 
 .app__results {

@@ -12,13 +12,12 @@ export default class App extends Component {
   }
 
   onTextInputSubmit = letters => {
-    const wildcardCount = (letters.match(/\./g) || []).length
+    const wildcardCount = (letters.match(/\?/g) || []).length
     if (wildcardCount > 3) {
       const error = 'Max 3 wildcards allowed'
       this.setState({ error })
     } else {
-      const error = ''
-      this.setState({ letters, error })
+      this.setState({ letters, error: '' })
     }
   }
 
@@ -40,29 +39,36 @@ export default class App extends Component {
     const { dictionary, letters, error } = this.state
     let words = null
     let duration = 0
+    const wildcardFound = letters.indexOf('?') !== -1
+    const useAllLetters = letters.slice(-1) === '/'
 
     if (!error && dictionary && letters.length > 0) {
       const start = performance.now()
-      const wildcardFound = letters.indexOf('.') !== -1
+
       words = wildcardFound
-        ? dictionary.getWordMatches(letters)
-        : dictionary.getAnagrams(letters, 3)
+        ? dictionary.getWordMatches(letters, '?')
+        : dictionary.getAnagrams(letters, useAllLetters ? letters.length - 1 : 3)
       duration = Math.round(performance.now() - start)
+    }
+
+    let results = error
+    if (!error) {
+      results = words ? 'Found ' + words.length + ' results in ' + duration + 'ms' : ''
+      if (useAllLetters) {
+        results = results + ' using all letters'
+      }
     }
 
     return (
       <div className="app">
         <h1 className="app__header">Wordbits</h1>
-        <p className="app__hint">Try searching 'SOMETHING' or 'HA.E'</p>
+        <p className="app__hint">
+          Hint: Try <span className="app__hint--bold">listen</span> or{' '}
+          <span className="app__hint--bold">listen/</span> or{' '}
+          <span className="app__hint--bold">ha?e</span>
+        </p>
         <TextInput handleSubmit={this.onTextInputSubmit} />
-        {!error &&
-          words && (
-            <p className="app__results">
-              Found {words.length} results in {duration}
-              ms
-            </p>
-          )}
-        {error && <p className="app__results">{error}</p>}
+        <p className="app__results">{results}</p>
         <WordList words={words} duration={duration} />
       </div>
     )

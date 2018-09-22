@@ -8,7 +8,7 @@ export default class textInputForm extends Component {
 
   saveToState = e => {
     const { name, value } = e.target
-    this.setState({ [name]: value.toUpperCase() })
+    this.setState({ [name]: value })
     if (value === '') {
       const { handleSubmit } = this.props
       handleSubmit('')

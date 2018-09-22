@@ -93,7 +93,7 @@ const Trie = function() {
   }
 
   // matches wild card searches using all letters in place , e.g. 'ha.e' returns [ 'HAKE', 'HALE', 'HARE', 'HATE', 'HAVE', 'HAZE' ]
-  this.getWordMatches = function(letters) {
+  this.getWordMatches = function(letters, wildcard) {
     letters = letters.toUpperCase()
     let words = []
 
@@ -108,7 +108,7 @@ const Trie = function() {
       const chars = word.split('')
       for (let [i, char] of chars.entries()) {
         const remaining = chars.slice(i + 1).join('')
-        if (char === '.') {
+        if (char === wildcard) {
           const choices = [...node.keys.keys()]
           choices.forEach(choice => {
             if (node.keys.get(choice)) {
