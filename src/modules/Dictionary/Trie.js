@@ -1,3 +1,4 @@
+// Based on https://codepen.io/beaucarnes/pen/mmBNBd?editors=0011
 const Node = function() {
   this.keys = new Map()
   this.end = false
