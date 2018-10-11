@@ -63,7 +63,7 @@ export default class App extends Component {
       <div className="app">
         <h1 className="app__header">Wordbits</h1>
         <p className="app__hint">
-          Hint: Try <span className="app__hint--bold">listen</span> or{' '}
+          Try <span className="app__hint--bold">listen</span> or{' '}
           <span className="app__hint--bold">listen/</span> or{' '}
           <span className="app__hint--bold">ha?e</span>
         </p>
