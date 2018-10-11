@@ -1,0 +1,5 @@
+.letter {
+  --size: 50px;
+  font-weight: 900;
+  font-size: calc(var(--size) / 4 * 3);
+}
