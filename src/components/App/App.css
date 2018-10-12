@@ -5,6 +5,7 @@
 .app__header {
   text-align: center;
   color: var(--primary-light);
+  letter-spacing: 0.2rem;
   margin: 0 auto 0.5rem auto;
 }
 
