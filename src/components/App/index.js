@@ -37,7 +37,7 @@ export default class App extends Component {
 
   render() {
     const { dictionary, letters, error } = this.state
-    let words = null
+    let words = undefined
     let duration = 0
     const wildcardFound = letters.indexOf('?') !== -1
     const useAllLetters = letters.slice(-1) === '/'
