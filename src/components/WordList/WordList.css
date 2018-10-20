@@ -8,7 +8,7 @@
   text-align: center;
   font-size: 1.5rem;
   color: var(--primary-light);
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Oxygen Mono', monospace;
 }
 
 .wordList__title {
@@ -22,7 +22,7 @@
   font-weight: 900;
   font-variant: small-caps;
   color: var(--primary-dark);
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Oxygen', sans-serif;
 }
 
 .wordList__title:nth-of-type(1) {
