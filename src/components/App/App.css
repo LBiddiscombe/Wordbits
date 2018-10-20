@@ -5,13 +5,14 @@
 .app__header {
   text-align: center;
   color: var(--primary-light);
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
   margin: 0 auto 0.5rem auto;
 }
 
 .app__hint {
   font-size: 1.25rem;
   text-align: center;
+  letter-spacing: 0.05rem;
   color: var(--primary-light);
   margin: 0 0 0.5rem;
 }
