@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import './WordList.css'
 
-const LengthTitle = props => <li className="wordList__title">{props.len} letters</li>
+const LengthTitle = props => (
+  <li className="wordList__title">
+    <span className="wordList__titleText">{props.len} letters</span>
+  </li>
+)
 const Word = props => <li className="wordList__item">{props.word.toLowerCase()}</li>
 
 export default class WordList extends Component {

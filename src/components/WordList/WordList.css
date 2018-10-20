@@ -12,13 +12,15 @@
 }
 
 .wordList__title {
-  width: fit-content;
   margin: 1rem 0 0.25rem;
+}
+
+.wordList__titleText {
+  width: fit-content;
+  background-color: var(--primary-light);
   padding: 0 0.5rem;
   font-weight: 900;
-  white-space: nowrap;
   font-variant: small-caps;
-  background-color: var(--primary-light);
   color: var(--primary-dark);
   font-family: 'Roboto', sans-serif;
 }
