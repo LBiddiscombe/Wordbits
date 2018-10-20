@@ -7,6 +7,7 @@
 }
 
 .textInputForm__input {
+  grid-area: 1/1;
   font-size: 2rem;
   font-weight: 700;
   width: 100%;
@@ -24,6 +25,18 @@
   border: 1px;
   font-family: inherit;
   font-size: 1.5rem;
+}
+
+.textInputForm__reset {
+  grid-area: 1/1;
+  justify-self: end;
+  padding: 0rem 0.25rem;
+  color: var(--primary-dark);
+  opacity: 0.8;
+  font-size: 1.5rem;
+  display: inline-block;
+  background: none;
+  border: none;
 }
 
 @media (max-width: 376px) {

@@ -21,17 +21,32 @@ export default class textInputForm extends Component {
     handleSubmit(this.state.letters)
   }
 
+  onReset = e => {
+    e.preventDefault()
+    this.setState({ letters: '' })
+    const { handleSubmit } = this.props
+    handleSubmit('')
+    document.getElementById('letters').focus()
+  }
+
   render() {
+    const { letters } = this.state
     return (
       <form className="textInputForm" onSubmit={this.onSubmit} autoComplete="off">
         <input
           className="textInputForm__input"
           name="letters"
+          id="letters"
           onChange={this.saveToState}
           value={this.state.letters}
           maxLength="11"
           autoFocus
         />
+        {letters && (
+          <button type="reset" className="textInputForm__reset" onClick={this.onReset}>
+            <i className="fas fa-times-circle" />
+          </button>
+        )}
         <button type="submit" className="textInputForm__submit">
           GO
         </button>
