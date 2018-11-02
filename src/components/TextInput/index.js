@@ -19,6 +19,7 @@ export default class textInputForm extends Component {
     e.preventDefault()
     const { handleSubmit } = this.props
     handleSubmit(this.state.letters)
+    window.scrollTo(0, 0)
   }
 
   onReset = e => {
@@ -27,6 +28,7 @@ export default class textInputForm extends Component {
     const { handleSubmit } = this.props
     handleSubmit('')
     document.getElementById('letters').focus()
+    window.scrollTo(0, 0)
   }
 
   render() {

@@ -4,6 +4,8 @@
   grid-template-columns: 300px 50px;
   grid-gap: 0.25rem;
   justify-content: center;
+  position: sticky;
+  top: 0.5rem;
 }
 
 .textInputForm__input {
