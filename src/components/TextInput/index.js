@@ -20,6 +20,7 @@ export default class textInputForm extends Component {
     const { handleSubmit } = this.props
     handleSubmit(this.state.letters)
     window.scrollTo(0, 0)
+    document.getElementById('letters').blur()
   }
 
   onReset = e => {
