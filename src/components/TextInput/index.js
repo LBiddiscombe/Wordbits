@@ -41,7 +41,7 @@ export default class textInputForm extends Component {
           name="letters"
           id="letters"
           onChange={this.saveToState}
-          value={this.state.letters}
+          value={letters}
           maxLength="11"
           autoFocus
         />
