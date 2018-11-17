@@ -25,6 +25,7 @@
   color: var(--primary-dark);
   background-color: var(--primary-light);
   border: 1px;
+  padding: 0px;
   font-family: inherit;
   font-size: 1.5rem;
 }
@@ -48,8 +49,5 @@
 
   .textInputForm__input {
     font-size: 1.5rem;
-  }
-  .textInputForm__submit {
-    padding: 0px;
   }
 }
