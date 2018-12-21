@@ -44,6 +44,7 @@ export default class textInputForm extends Component {
           value={letters}
           maxLength="11"
           autoFocus
+          autoComplete="off"
         />
         {letters && (
           <button type="reset" className="textInputForm__reset" onClick={this.onReset}>
