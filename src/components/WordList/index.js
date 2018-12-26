@@ -30,6 +30,10 @@ export default class WordList extends Component {
       })
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ defn: [] })
+  }
+
   render() {
     const { words = [] } = this.props
 
@@ -44,9 +48,9 @@ export default class WordList extends Component {
     })
 
     return this.state.defn.length > 0 ? (
-      <Definition definition={this.state.defn}>
-        <div onClick={this.onClick}>{JSON.stringify(this.state, null, 2)}</div>
-      </Definition>
+      <div onClick={this.onClick}>
+        <Definition definition={this.state.defn} />
+      </div>
     ) : (
       <ul className="wordList" onClick={this.onClick}>
         {rows}
