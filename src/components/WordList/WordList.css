@@ -9,6 +9,7 @@
   font-size: 1.5rem;
   color: var(--primary-light);
   font-family: 'Oxygen Mono', monospace;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .wordList__title {
