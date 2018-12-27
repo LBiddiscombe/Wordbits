@@ -3,7 +3,6 @@
   max-width: 355px;
   font-size: 1rem;
   color: var(--primary-light);
-  -webkit-tap-highlight-color: transparent;
 }
 
 .definition h1 {
