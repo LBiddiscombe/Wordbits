@@ -10,28 +10,19 @@ const LengthTitle = props => (
 const Word = props => <li className="wordList__item">{props.word.toLowerCase()}</li>
 
 export default class WordList extends Component {
-  state = { defn: [] }
+  state = { selectedWord: '' }
 
   onClick = e => {
     e.preventDefault()
-    if (this.state.defn.length > 0) {
-      this.setState({ defn: [] })
-      return
+    if (!this.state.selectedWord) {
+      this.setState({ selectedWord: e.target.textContent })
+    } else {
+      this.setState({ selectedWord: '' })
     }
-    fetch(
-      'https://googledictionaryapi.eu-gb.mybluemix.net/?define=' +
-        e.target.textContent +
-        '&lang=en',
-      {}
-    )
-      .then(blob => blob.json())
-      .then(data => {
-        this.setState({ defn: data })
-      })
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ defn: [] })
+    this.setState({ selectedWord: '' })
   }
 
   render() {
@@ -47,9 +38,9 @@ export default class WordList extends Component {
       lastLength = word.length
     })
 
-    return this.state.defn.length > 0 ? (
+    return this.state.selectedWord ? (
       <div onClick={this.onClick}>
-        <Definition definition={this.state.defn} />
+        <Definition word={this.state.selectedWord} />
       </div>
     ) : (
       <ul className="wordList" onClick={this.onClick}>

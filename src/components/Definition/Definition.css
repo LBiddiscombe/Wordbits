@@ -1,4 +1,29 @@
-.Definition {
+.definition {
+  margin: 0 auto;
+  max-width: 355px;
   font-size: 1rem;
   color: var(--primary-light);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.definition h1 {
+  margin-bottom: 0;
+}
+
+.definition__phonetic {
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
+  font-weight: lighter;
+}
+
+.definition__loading {
+  font-size: 1.5rem;
+  font-weight: lighter;
+  color: var(--primary-light);
+  text-align: center;
+}
+
+.definition__type {
+  font-style: italic;
+  margin: 0.5rem 0 0;
 }
