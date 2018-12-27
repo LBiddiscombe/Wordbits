@@ -2,40 +2,47 @@ import React, { Component } from 'react'
 import './Definition.css'
 
 export default class Definition extends Component {
-  state = { definition: null }
+  state = {
+    word: this.props.word,
+    phontetic: '',
+    definitions: null
+  }
 
   componentDidMount() {
     fetch('https://googledictionaryapi.eu-gb.mybluemix.net/?define=' + this.props.word + '&lang=en')
       .then(blob => blob.json())
       .then(data => {
-        this.setState({ definition: data })
+        const { word, phonetic } = data[0]
+        const meanings = data.map(defn => defn.meaning)
+        const definitions = mergeMeanings(meanings)
+        this.setState({
+          word,
+          phonetic,
+          definitions
+        })
       })
   }
 
   render() {
-    const { definition } = this.state
-    const types = definition && Object.keys(definition[0].meaning)
-    const meanings = definition && definition[0].meaning
-    const word = (definition && definition[0].word) || this.props.word
-    const phonetic = definition && definition[0].phonetic
+    const { word, phonetic, definitions } = this.state
 
-    let results = <p className="definition__loading">Loading...</p>
-    if (definition) {
-      results = types.map(type => {
-        return (
-          <div key={type}>
-            {type !== 'crossReference' && <h3 className="definition__type">{type}</h3>}
+    let results = []
+    if (definitions) {
+      definitions.forEach((value, key) => {
+        results.push(
+          <div key={key}>
+            {key !== 'crossReference' && <h3 className="definition__type">{key}</h3>}
             <ol>
-              {meanings[type].map((meaning, i) => (
-                <li className="definition__meaning" key={type + i}>
-                  {meaning.definition}
+              {value.map((meaning, i) => (
+                <li className="definition__meaning" key={key + i}>
+                  {meaning}
                 </li>
               ))}
             </ol>
           </div>
         )
       })
-    }
+    } else results = <p className="definition__loading">Loading...</p>
 
     return (
       <div className="definition">
@@ -47,4 +54,19 @@ export default class Definition extends Component {
       </div>
     )
   }
+}
+
+function mergeMeanings(meanings) {
+  const mergedMeanings = new Map()
+  meanings.forEach(response => {
+    Object.keys(response).forEach(key => {
+      if (mergedMeanings.has(key))
+        mergedMeanings.set(
+          key,
+          mergedMeanings.get(key).concat(response[key].map(obj => obj.definition))
+        )
+      else mergedMeanings.set(key, response[key].map(obj => obj.definition))
+    })
+  })
+  return mergedMeanings
 }
