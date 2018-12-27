@@ -14,6 +14,7 @@ export default class WordList extends Component {
 
   onClick = e => {
     e.preventDefault()
+    if (e.target.tagName === 'SPAN') return
     if (!this.state.selectedWord) {
       this.setState({ selectedWord: e.target.textContent })
     } else {
