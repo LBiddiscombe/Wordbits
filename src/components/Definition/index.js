@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Definition.css'
 
 export default class Definition extends Component {
+  _isMounted = false
   state = {
     word: this.props.word,
     phontetic: '',
@@ -9,18 +10,25 @@ export default class Definition extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true
     fetch('https://googledictionaryapi.eu-gb.mybluemix.net/?define=' + this.props.word + '&lang=en')
       .then(blob => blob.json())
       .then(data => {
-        const { word, phonetic } = data[0]
-        const meanings = data.map(defn => defn.meaning)
-        const definitions = mergeMeanings(meanings)
-        this.setState({
-          word,
-          phonetic,
-          definitions
-        })
+        if (this._isMounted) {
+          const { word, phonetic } = data[0]
+          const meanings = data.map(defn => defn.meaning)
+          const definitions = mergeMeanings(meanings)
+          this.setState({
+            word,
+            phonetic,
+            definitions
+          })
+        }
       })
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false
   }
 
   render() {
