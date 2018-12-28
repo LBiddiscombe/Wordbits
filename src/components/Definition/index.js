@@ -25,6 +25,11 @@ export default class Definition extends Component {
           })
         }
       })
+      .catch(() => {
+        this.setState({
+          definitions: new Map([['Error', ['No Definition Found']]])
+        })
+      })
   }
 
   componentWillUnmount() {
