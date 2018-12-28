@@ -4,7 +4,9 @@ import Definition from '../Definition'
 
 const LengthTitle = props => (
   <li className="wordList__title">
-    <span className="wordList__titleText">{props.len} letters</span>
+    <span className="wordList__titleText">
+      {props.len} <span className="wordList__titleLetters">letters</span>
+    </span>
   </li>
 )
 const Word = props => <li className="wordList__item">{props.word.toLowerCase()}</li>

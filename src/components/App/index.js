@@ -61,13 +61,15 @@ export default class App extends Component {
 
     return (
       <div className="app">
-        <h1 className="app__header">Wordbits</h1>
-        <p className="app__hint">
-          Try <span className="app__hint--bold">listen</span> or{' '}
-          <span className="app__hint--bold">listen/</span> or{' '}
-          <span className="app__hint--bold">ha?e</span>
-        </p>
-        <TextInput handleSubmit={this.onTextInputSubmit} />
+        <div className="app__top">
+          <h1 className="app__header">Wordbits</h1>
+          <p className="app__hint">
+            Try <span className="app__hint--bold">listen</span> or{' '}
+            <span className="app__hint--bold">listen/</span> or{' '}
+            <span className="app__hint--bold">ha?e</span>
+          </p>
+          <TextInput handleSubmit={this.onTextInputSubmit} />
+        </div>
         <p className="app__results">{results}</p>
         <WordList words={words} duration={duration} />
       </div>

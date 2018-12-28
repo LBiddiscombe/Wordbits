@@ -9,22 +9,31 @@
 }
 
 .textInputForm__input {
+  position: relative;
+  top: 1.25rem;
+  margin-top: -0.75rem;
   grid-area: 1/1;
   font-size: 2rem;
   font-weight: 700;
   width: 100%;
-  border: 1px;
-  padding: 0.25rem;
+  border: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 0.25rem 0 0.25rem 0.5rem;
   font-family: inherit;
   letter-spacing: 0.1rem;
   border-radius: 0px;
-  color: var(--primary-dark);
+  background-color: white;
+  color: var(--text-dark);
 }
 
 .textInputForm__submit {
-  color: var(--primary-dark);
-  background-color: var(--primary-light);
-  border: 1px;
+  position: relative;
+  top: 1.25rem;
+  margin-top: -0.75rem;
+  color: var(--text-dark);
+  background-color: white;
+  border: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   padding: 0px;
   font-family: inherit;
   font-size: 1.5rem;
@@ -33,9 +42,12 @@
 .textInputForm__reset {
   grid-area: 1/1;
   justify-self: end;
-  padding: 0rem 0.25rem;
-  color: var(--primary-dark);
-  opacity: 0.8;
+  padding: 0rem 0.5rem;
+  position: relative;
+  top: 1.25rem;
+  margin-top: -0.75rem;
+  color: var(--text-dark);
+  opacity: 0.6;
   font-size: 1.5rem;
   display: inline-block;
   background: none;

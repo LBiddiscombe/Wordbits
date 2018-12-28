@@ -7,7 +7,7 @@
   column-width: 8rem;
   text-align: center;
   font-size: 1.5rem;
-  color: var(--primary-light);
+  color: var(--text-dark);
   font-family: 'Oxygen Mono', monospace;
 }
 
@@ -17,12 +17,17 @@
 
 .wordList__titleText {
   width: fit-content;
-  background-color: var(--primary-light);
+  background-color: var(--accent);
   padding: 0 0.5rem;
   font-weight: 900;
   font-variant: small-caps;
-  color: var(--primary-dark);
+  color: var(--primary-light);
   font-family: 'Oxygen', sans-serif;
+}
+
+.wordList__titleLetters {
+  position: relative;
+  top: -0.15rem;
 }
 
 .wordList__title:nth-of-type(1) {

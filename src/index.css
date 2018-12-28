@@ -1,6 +1,14 @@
 :root {
-  --primary-light: #feffff;
+  /* Red Theme */
+  --primary-light: #fffbfb;
   --primary-dark: #cb2d3e;
+  --text-dark: #8e1f2b;
+  --accent: #e5969e;
+  /* Blue Theme */
+  --primary-light: #fffbfb;
+  --primary-dark: #193549;
+  --text-dark: ##112533;
+  --accent: #8c9aa4;
 }
 
 html {
@@ -15,11 +23,7 @@ html {
 
 body {
   margin: auto;
-  max-width: 960px;
-  padding: 1rem;
   font-family: 'Oxygen', sans-serif;
-  background: #cb2d3e;
-  background: linear-gradient(to top, #ef473a, #cb2d3e);
-  background-attachment: fixed;
+  background: var(--primary-light);
   overflow-y: overlay;
 }
