@@ -41,12 +41,18 @@ export default class WordList extends Component {
       lastLength = word.length
     })
 
+    const columns = Math.trunc(words.length / 15) + 1
+
     return this.state.selectedWord ? (
       <div onClick={this.onClick}>
         <Definition word={this.state.selectedWord} />
       </div>
     ) : (
-      <ul className="wordList" onClick={this.onClick}>
+      <ul
+        className="wordList"
+        style={{ '--column-count': columns, '--width': columns * 10 + 'rem' }}
+        onClick={this.onClick}
+      >
         {rows}
       </ul>
     )
