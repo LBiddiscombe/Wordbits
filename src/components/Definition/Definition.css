@@ -1,7 +1,7 @@
 .definition {
   margin: 0 auto;
   padding: 0 1rem;
-  max-width: 355px;
+  max-width: 768px;
   font-size: 1rem;
   color: var(--text-dark);
 }
