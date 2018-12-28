@@ -22,13 +22,14 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    const gist = '22219d5aca00191c82a17ae84a206a69'
-    const filename = 'wordList.json'
-    const url = 'https://api.github.com/gists/' + gist
+    const APIKEY = `${process.env.REACT_APP_MLAB_APIKEY}`
+    const url =
+      'https://api.mlab.com/api/1/databases/wordbits/collections/words/5c263989fb6fc00eee87d369?apiKey=' +
+      APIKEY
     fetch(url)
       .then(blob => blob.json())
       .then(data => {
-        const words = JSON.parse(data.files[filename].content)
+        const words = data.words
         const dictionary = new Trie()
         words.forEach(word => dictionary.add(word))
         this.setState({ dictionary })
