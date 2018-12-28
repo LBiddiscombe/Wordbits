@@ -1,11 +1,12 @@
 :root {
   /* Red Theme */
-  --primary-light: #fffbfb;
+  --primary-light: #fcf4f5;
   --primary-dark: #cb2d3e;
   --text-dark: #8e1f2b;
   --accent: #e5969e;
+
   /* Blue Theme */
-  --primary-light: #fffbfb;
+  --primary-light: #f1f2f3;
   --primary-dark: #193549;
   --text-dark: ##112533;
   --accent: #8c9aa4;

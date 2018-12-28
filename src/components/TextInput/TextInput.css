@@ -10,7 +10,7 @@
 
 .textInputForm__input {
   position: relative;
-  top: 1.25rem;
+  top: 1.5rem;
   margin-top: -0.75rem;
   grid-area: 1/1;
   font-size: 2rem;
@@ -24,11 +24,12 @@
   border-radius: 0px;
   background-color: white;
   color: var(--text-dark);
+  -webkit-appearance: none;
 }
 
 .textInputForm__submit {
   position: relative;
-  top: 1.25rem;
+  top: 1.5rem;
   margin-top: -0.75rem;
   color: var(--text-dark);
   background-color: white;
@@ -44,7 +45,7 @@
   justify-self: end;
   padding: 0rem 0.5rem;
   position: relative;
-  top: 1.25rem;
+  top: 1.5rem;
   margin-top: -0.75rem;
   color: var(--text-dark);
   opacity: 0.6;
