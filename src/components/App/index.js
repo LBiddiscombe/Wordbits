@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import NProgress from 'nprogress'
 import './App.css'
 import Trie from '../../modules/Dictionary'
 import WordList from '../WordList'
@@ -22,6 +23,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    NProgress.start()
     const APIKEY = `${process.env.REACT_APP_MLAB_APIKEY}`
     const url =
       'https://api.mlab.com/api/1/databases/wordbits/collections/words/5c263989fb6fc00eee87d369?apiKey=' +
@@ -31,8 +33,14 @@ export default class App extends Component {
       .then(data => {
         const words = data.words
         const dictionary = new Trie()
-        words.forEach(word => dictionary.add(word))
+        words.forEach((word, index) => {
+          dictionary.add(word)
+          if (index % 1000 === 0) {
+            NProgress.inc()
+          }
+        })
         this.setState({ dictionary })
+        NProgress.done()
       })
   }
 
