@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NProgress from 'nprogress'
 import './App.css'
+import './nprogress.css'
 import Trie from '../../modules/Dictionary'
 import WordList from '../WordList'
 import TextInput from '../TextInput'
