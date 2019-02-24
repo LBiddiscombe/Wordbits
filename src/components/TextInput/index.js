@@ -1,60 +1,60 @@
-import React, { Component } from 'react'
+import React, { useReducer } from 'react'
 import './TextInput.css'
 
-export default class textInputForm extends Component {
-  state = {
+function TextInput(props) {
+  const [state, setState] = useReducer((state, newState) => ({ ...state, ...newState }), {
     letters: ''
-  }
+  })
 
-  saveToState = e => {
+  const saveToState = e => {
     const { name, value } = e.target
-    this.setState({ [name]: value })
+    setState({ [name]: value })
     if (value === '') {
-      const { handleSubmit } = this.props
+      const { handleSubmit } = props
       handleSubmit('')
     }
   }
 
-  onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault()
-    const { handleSubmit } = this.props
-    handleSubmit(this.state.letters)
+    const { handleSubmit } = props
+    handleSubmit(state.letters)
     window.scrollTo(0, 0)
     document.getElementById('letters').blur()
   }
 
-  onReset = e => {
+  const onReset = e => {
     e.preventDefault()
-    this.setState({ letters: '' })
-    const { handleSubmit } = this.props
+    setState({ letters: '' })
+    const { handleSubmit } = props
     handleSubmit('')
     document.getElementById('letters').focus()
     window.scrollTo(0, 0)
   }
 
-  render() {
-    const { letters } = this.state
-    return (
-      <form className="textInputForm" onSubmit={this.onSubmit} autoComplete="off">
-        <input
-          className="textInputForm__input"
-          name="letters"
-          id="letters"
-          onChange={this.saveToState}
-          value={letters}
-          maxLength="11"
-          autoFocus
-          autoComplete="off"
-        />
-        {letters && (
-          <button type="reset" className="textInputForm__reset" onClick={this.onReset}>
-            <i className="fas fa-times-circle" />
-          </button>
-        )}
-        <button type="submit" className="textInputForm__submit">
-          GO
+  const { letters } = state
+  return (
+    <form className="textInputForm" onSubmit={onSubmit} autoComplete="off">
+      <input
+        className="textInputForm__input"
+        name="letters"
+        id="letters"
+        onChange={saveToState}
+        value={letters}
+        maxLength="11"
+        autoFocus
+        autoComplete="off"
+      />
+      {letters && (
+        <button type="reset" className="textInputForm__reset" onClick={onReset}>
+          <i className="fas fa-times-circle" />
         </button>
-      </form>
-    )
-  }
+      )}
+      <button type="submit" className="textInputForm__submit">
+        GO
+      </button>
+    </form>
+  )
 }
+
+export default TextInput
