@@ -2,15 +2,6 @@ import React, { useState, useEffect } from 'react'
 import './WordList.css'
 import Definition from '../Definition'
 
-const LengthTitle = props => (
-  <li className="wordList__title">
-    <span className="wordList__titleText">
-      {props.len} <span className="wordList__titleLetters">letters</span>
-    </span>
-  </li>
-)
-const Word = props => <li className="wordList__item">{props.word.toLowerCase()}</li>
-
 function WordList(props) {
   const [selectedWord, setSelectedWord] = useState('')
 
@@ -23,7 +14,7 @@ function WordList(props) {
 
   const onClick = e => {
     e.preventDefault()
-    if (e.target.tagName === 'SPAN') return
+    if (['SPAN', 'UL'].includes(e.target.tagName)) return
     if (!selectedWord) {
       setSelectedWord(e.target.textContent)
     } else {
@@ -59,5 +50,15 @@ function WordList(props) {
     </ul>
   )
 }
+
+const LengthTitle = props => (
+  <li className="wordList__title">
+    <span className="wordList__titleText">
+      {props.len} <span className="wordList__titleLetters">letters</span>
+    </span>
+  </li>
+)
+
+const Word = props => <li className="wordList__item">{props.word.toLowerCase()}</li>
 
 export default WordList
