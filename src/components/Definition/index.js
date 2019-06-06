@@ -12,7 +12,7 @@ function Definition(props) {
     fetch('https://googledictionaryapi.eu-gb.mybluemix.net/?define=' + props.word + '&lang=en')
       .then(blob => blob.json())
       .then(data => {
-        const { word, phonetic, meaning } = data
+        const { word, phonetic, meaning } = data[0]
         const definitions = mergeMeanings(meaning)
         setState({
           word,
@@ -20,7 +20,8 @@ function Definition(props) {
           definitions
         })
       })
-      .catch(() => {
+      .catch(e => {
+        console.log(e)
         setState({
           definitions: new Map([['Error', ['No Definition Found']]])
         })
