@@ -39,7 +39,21 @@ const Trie = function() {
     return node.keys.has(word) && node.keys.get(word).isEnd() ? true : false
   }
 
-  this.print = function() {
+  this.getPrefixNode = function(prefix) {
+    prefix = prefix.toUpperCase()
+    let node = this.root
+    while (prefix.length > 1) {
+      if (!node.keys.has(prefix[0])) {
+        return false
+      } else {
+        node = node.keys.get(prefix[0])
+        prefix = prefix.substr(1)
+      }
+    }
+    return node
+  }
+
+  this.list = function(node = this.root, prefix = '') {
     let words = []
     let search = function(node, string) {
       if (node.keys.size !== 0) {
@@ -53,7 +67,7 @@ const Trie = function() {
         return string.length > 0 ? words.push(string) : undefined
       }
     }
-    search(this.root, '')
+    search(node, prefix)
     return words.length > 0 ? words : []
   }
 
@@ -93,7 +107,7 @@ const Trie = function() {
   }
 
   // matches wild card searches using all letters in place , e.g. 'ha.e' returns [ 'HAKE', 'HALE', 'HARE', 'HATE', 'HAVE', 'HAZE' ]
-  this.getWordMatches = function(letters, wildcard) {
+  this.getWordMatches = function(letters, wildcard, fullWordsOnly = true) {
     letters = letters.toUpperCase()
     let words = []
 
@@ -101,8 +115,14 @@ const Trie = function() {
       const isWordEnd = node.isEnd()
       const isMinLength = prefix.length === letters.length
 
-      if (isWordEnd && isMinLength) {
-        words.push(prefix)
+      if (fullWordsOnly) {
+        if (isWordEnd && isMinLength) {
+          words.push(prefix)
+        }
+      } else {
+        if (isMinLength) {
+          words.push(prefix)
+        }
       }
 
       const chars = word.split('')
@@ -126,6 +146,20 @@ const Trie = function() {
     }
 
     return readLetters(letters, this.root)
+  }
+
+  // matches wild card searches using all letters in place , e.g. 'ha.e' returns [ 'HAKE', 'HALE', 'HARE', 'HATE', 'HAVE', 'HAZE' ]
+  this.getWordsBeginning = function(prefix, wildcard) {
+    prefix = prefix.toUpperCase()
+    const wordStart = prefix.slice(0, -1)
+    let words = []
+    const prefixWords = this.getWordMatches(wordStart, wildcard, false)
+    prefixWords.forEach(word => {
+      const node = this.getPrefixNode(word + wildcard)
+      words = words.concat(this.list(node, word))
+    })
+
+    return words.sort((a, b) => b.length - a.length || a.localeCompare(b))
   }
 }
 
