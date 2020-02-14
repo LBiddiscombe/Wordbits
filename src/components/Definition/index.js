@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from 'react'
+import { getDefinition } from '../../modules/api'
 import './Definition.css'
 
 function Definition(props) {
@@ -9,17 +10,14 @@ function Definition(props) {
   })
 
   useEffect(() => {
-    fetch('https://googledictionaryapi.eu-gb.mybluemix.net/?define=' + props.word + '&lang=en')
-      .then(blob => blob.json())
-      .then(data => {
-        const { word, phonetic, meaning } = data[0]
-        const definitions = mergeMeanings(meaning)
+    getDefinition(props.word)
+      .then(({ word, phonetic, definitions }) =>
         setState({
           word,
           phonetic,
           definitions
         })
-      })
+      )
       .catch(e => {
         console.log(e)
         setState({
@@ -57,19 +55,6 @@ function Definition(props) {
       {results}
     </div>
   )
-}
-
-function mergeMeanings(meanings) {
-  const mergedMeanings = new Map()
-  Object.keys(meanings).forEach(key => {
-    if (mergedMeanings.has(key))
-      mergedMeanings.set(
-        key,
-        mergedMeanings.get(key).concat(meanings[key].map(obj => obj.definition))
-      )
-    else mergedMeanings.set(key, meanings[key].map(obj => obj.definition))
-  })
-  return mergedMeanings
 }
 
 export default Definition

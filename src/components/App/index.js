@@ -1,10 +1,9 @@
 import React, { useReducer, useEffect } from 'react'
-import NProgress from 'nprogress'
 import './App.css'
 import './nprogress.css'
-import Trie from '../../modules/Dictionary'
 import WordList from '../WordList'
 import TextInput from '../TextInput'
+import { loadDictionary } from '../../modules/api'
 
 const WILDCARD_CHAR = '.'
 const USE_ALL_CHAR = '/'
@@ -19,25 +18,7 @@ function App() {
   })
 
   useEffect(() => {
-    NProgress.start()
-    const APIKEY = `${process.env.REACT_APP_MLAB_APIKEY}`
-    const url =
-      'https://api.mlab.com/api/1/databases/wordbits/collections/words/5c263989fb6fc00eee87d369?apiKey=' +
-      APIKEY
-    fetch(url)
-      .then(blob => blob.json())
-      .then(data => {
-        const words = data.words
-        const dictionary = new Trie()
-        words.forEach((word, index) => {
-          dictionary.add(word)
-          if (index % 1000 === 0) {
-            NProgress.inc()
-          }
-        })
-        setState({ dictionary })
-        NProgress.done()
-      })
+    loadDictionary().then(dictionary => setState({ dictionary }))
   }, [])
 
   const onTextInputSubmit = letters => {
