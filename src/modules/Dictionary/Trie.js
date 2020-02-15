@@ -42,7 +42,7 @@ const Trie = function() {
   this.getPrefixNode = function(prefix) {
     prefix = prefix.toUpperCase()
     let node = this.root
-    while (prefix.length > 1) {
+    while (prefix.length > 0) {
       if (!node.keys.has(prefix[0])) {
         return false
       } else {
@@ -155,7 +155,7 @@ const Trie = function() {
     let words = []
     const prefixWords = this.getWordMatches(wordStart, wildcard, false)
     prefixWords.forEach(word => {
-      const node = this.getPrefixNode(word + wildcard)
+      const node = this.getPrefixNode(word)
       words = words.concat(this.list(node, word))
     })
 
