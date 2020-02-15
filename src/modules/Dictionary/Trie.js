@@ -71,6 +71,8 @@ const Trie = function() {
     return words.length > 0 ? words : []
   }
 
+  this.byLength = (a, b) => b.length - a.length || a.localeCompare(b)
+
   // Inspired by https://github.com/bluelovers/trie-prefix-tree
   this.getAnagrams = function(letters, minLength = letters.length) {
     letters = letters.toUpperCase()
@@ -100,7 +102,7 @@ const Trie = function() {
         }
       }
 
-      return words.sort((a, b) => b.length - a.length || a.localeCompare(b))
+      return words.sort(this.byLength)
     }
 
     return permute(letters, this.root)
@@ -149,6 +151,7 @@ const Trie = function() {
   }
 
   // matches wild card searches using all letters in place , e.g. 'ha.e' returns [ 'HAKE', 'HALE', 'HARE', 'HATE', 'HAVE', 'HAZE' ]
+  // then return all words beginning with these prefixes
   this.getWordsBeginning = function(prefix, wildcard) {
     prefix = prefix.toUpperCase()
     const wordStart = prefix.slice(0, -1)
@@ -159,7 +162,7 @@ const Trie = function() {
       words = words.concat(this.list(node, word))
     })
 
-    return words.sort((a, b) => b.length - a.length || a.localeCompare(b))
+    return words.sort(this.byLength)
   }
 }
 
