@@ -1,4 +1,4 @@
-import Trie from './Dictionary'
+import Trie from '../Dictionary'
 import NProgress from 'nprogress'
 
 async function loadDictionary() {
