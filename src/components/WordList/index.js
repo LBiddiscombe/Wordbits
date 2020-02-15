@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { animated, useTransition } from 'react-spring'
 import './WordList.css'
 import Definition from '../Definition'
 
