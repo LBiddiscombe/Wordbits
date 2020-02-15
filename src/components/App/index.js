@@ -26,9 +26,23 @@ function App() {
     if (wildcardCount > MAX_WILDCARDS) {
       const error = `Max ${MAX_WILDCARDS} wildcards allowed`
       setState({ error })
-    } else {
-      setState({ letters, error: '' })
+      return
     }
+
+    const beginsWithCount = (letters.match(/\*/g) || []).length
+    if (beginsWithCount > 1) {
+      const error = `Only 1 begins with (${AS_WORD_START_CHAR}) wildcard allowed`
+      setState({ error })
+      return
+    }
+
+    if (beginsWithCount === 1 && letters.length - wildcardCount - 1 <= 1) {
+      const error = `At least 2 letters required for prefix search`
+      setState({ error })
+      return
+    }
+
+    setState({ letters, error: '' })
   }
 
   const { dictionary, letters, error } = state
