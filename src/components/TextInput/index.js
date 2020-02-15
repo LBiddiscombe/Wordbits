@@ -41,7 +41,7 @@ function TextInput(props) {
         id="letters"
         onChange={saveToState}
         value={letters}
-        maxLength="11"
+        maxLength="15"
         autoFocus
         autoComplete="off"
       />
