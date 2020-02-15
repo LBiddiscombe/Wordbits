@@ -36,14 +36,6 @@ function WordList(props) {
     lastLength = word.length
   })
 
-  //const columns = Math.trunc(words.length / 15) + 1
-  const transition = useTransition(rows, (_, index) => index, {
-    from: { opacity: 0, transform: 'scale(0.5)' },
-    enter: { opacity: 1, transform: 'scale(1)' },
-    leave: { opacity: 0, transform: 'scale(0)' },
-    trail: rows.length > 0 ? 250 / rows.length : 250 / (columns * 15)
-  })
-
   return selectedWord ? (
     <div onClick={onClick}>
       <Definition word={selectedWord} />
@@ -54,11 +46,7 @@ function WordList(props) {
       style={{ '--column-count': columns, '--width': columns * 10 + 'rem' }}
       onClick={onClick}
     >
-      {transition.map(({ item, key, props: animation }) => (
-        <animated.div key={key} style={animation}>
-          {item}
-        </animated.div>
-      ))}
+      {rows}
     </ul>
   )
 }
