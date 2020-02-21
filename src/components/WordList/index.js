@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import './WordList.css'
 import Definition from '../Definition'
 
@@ -35,18 +36,28 @@ function WordList(props) {
     lastLength = word.length
   })
 
-  return selectedWord ? (
-    <div onClick={onClick}>
-      <Definition word={selectedWord} />
-    </div>
-  ) : (
-    <ul
-      className="wordList"
-      style={{ '--column-count': columns, '--width': columns * 10 + 'rem' }}
-      onClick={onClick}
-    >
-      {rows}
-    </ul>
+  if (selectedWord)
+    return (
+      <div onClick={onClick}>
+        <Definition word={selectedWord} />
+      </div>
+    )
+
+  return (
+    <AnimatePresence>
+      {rows.length > 0 && (
+        <motion.ul
+          className="wordList"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 40, transition: { ease: 'easeOut', duration: 0.1 } }}
+          style={{ '--column-count': columns, '--width': columns * 10 + 'rem' }}
+          onClick={onClick}
+        >
+          {rows}
+        </motion.ul>
+      )}
+    </AnimatePresence>
   )
 }
 
