@@ -50,7 +50,7 @@ function WordList(props) {
           className="wordList"
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 40, transition: { ease: 'easeOut', duration: 0.1 } }}
+          exit={{ opacity: 0, y: -30, transition: { ease: 'easeOut', duration: 0.1 } }}
           style={{ '--column-count': columns, '--width': columns * 10 + 'rem' }}
           onClick={onClick}
         >
