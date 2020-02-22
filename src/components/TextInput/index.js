@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import './TextInput.css'
 
-function TextInput(props) {
+function TextInput({ handleSubmit }) {
   const [state, setState] = useReducer((state, newState) => ({ ...state, ...newState }), {
     letters: ''
   })
@@ -9,15 +9,11 @@ function TextInput(props) {
   const saveToState = e => {
     const { name, value } = e.target
     setState({ [name]: value })
-    if (value === '') {
-      const { handleSubmit } = props
-      handleSubmit('')
-    }
+    handleSubmit('')
   }
 
   const onSubmit = e => {
     e.preventDefault()
-    const { handleSubmit } = props
     handleSubmit(state.letters)
     window.scrollTo(0, 0)
     document.getElementById('letters').blur()
@@ -26,7 +22,6 @@ function TextInput(props) {
   const onReset = e => {
     e.preventDefault()
     setState({ letters: '' })
-    const { handleSubmit } = props
     handleSubmit('')
     document.getElementById('letters').focus()
     window.scrollTo(0, 0)
