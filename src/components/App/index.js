@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import './nprogress.css'
 import WordList from '../WordList'
@@ -11,41 +11,39 @@ const AS_WORD_START_CHAR = '*'
 const MAX_WILDCARDS = 7
 
 function App() {
-  const [state, setState] = useReducer((state, newState) => ({ ...state, ...newState }), {
-    dictionary: null,
-    letters: '',
-    error: ''
-  })
+  const [dictionary, setDictionary] = useState(null)
+  const [letters, setLetters] = useState('')
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    loadDictionary().then(dictionary => setState({ dictionary }))
+    loadDictionary().then(dictionary => setDictionary(dictionary))
   }, [])
 
   const onTextInputSubmit = letters => {
     const wildcardCount = (letters.match(/\./g) || []).length
     if (wildcardCount > MAX_WILDCARDS) {
       const error = `Max ${MAX_WILDCARDS} wildcards allowed`
-      setState({ error })
+      setError(error)
       return
     }
 
     const beginsWithCount = (letters.match(/\*/g) || []).length
     if (beginsWithCount > 1) {
       const error = `Only 1 begins with (${AS_WORD_START_CHAR}) wildcard allowed`
-      setState({ error })
+      setError(error)
       return
     }
 
     if (beginsWithCount === 1 && letters.length - wildcardCount - 1 <= 1) {
       const error = `At least 2 letters required for prefix search`
-      setState({ error })
+      setError(error)
       return
     }
 
-    setState({ letters, error: '' })
+    setLetters(letters)
+    setError('')
   }
 
-  const { dictionary, letters, error } = state
   let words = undefined
   let duration = 0
   const wildcardFound =

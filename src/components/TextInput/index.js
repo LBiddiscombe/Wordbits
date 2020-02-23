@@ -1,33 +1,30 @@
-import React, { useReducer } from 'react'
+import React, { useState } from 'react'
 import './TextInput.css'
 
 function TextInput({ handleSubmit }) {
-  const [state, setState] = useReducer((state, newState) => ({ ...state, ...newState }), {
-    letters: ''
-  })
+  const [letters, setLetters] = useState('')
 
   const saveToState = e => {
-    const { name, value } = e.target
-    setState({ [name]: value })
+    const { value } = e.target
+    setLetters(value)
     handleSubmit('')
   }
 
   const onSubmit = e => {
     e.preventDefault()
-    handleSubmit(state.letters)
+    handleSubmit(letters)
     window.scrollTo(0, 0)
     document.getElementById('letters').blur()
   }
 
   const onReset = e => {
     e.preventDefault()
-    setState({ letters: '' })
+    setLetters('')
     handleSubmit('')
     document.getElementById('letters').focus()
     window.scrollTo(0, 0)
   }
 
-  const { letters } = state
   return (
     <form className="textInputForm" onSubmit={onSubmit} autoComplete="off">
       <input

@@ -1,32 +1,24 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getDefinition } from '../../modules/api'
 import './Definition.css'
 
 function Definition(props) {
-  const [state, setState] = useReducer((state, newState) => ({ ...state, ...newState }), {
-    word: props.word,
-    phontetic: '',
-    definitions: null
-  })
+  const [word, setWord] = useState(props.word)
+  const [phonetic, setPhonetic] = useState('')
+  const [definitions, setDefinitions] = useState(null)
 
   useEffect(() => {
     getDefinition(props.word)
-      .then(({ word, phonetic, definitions }) =>
-        setState({
-          word,
-          phonetic,
-          definitions
-        })
-      )
+      .then(({ word, phonetic, definitions }) => {
+        setWord(word)
+        setPhonetic(phonetic)
+        setDefinitions(definitions)
+      })
       .catch(e => {
         console.log(e)
-        setState({
-          definitions: new Map([['Error', ['No Definition Found']]])
-        })
+        setDefinitions(new Map([['Error', ['No Definition Found']]]))
       })
   }, [])
-
-  const { word, phonetic, definitions } = state
 
   let results = []
   if (definitions) {
