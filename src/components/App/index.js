@@ -80,8 +80,8 @@ function App() {
         <h1 className="app__header">Wordbits</h1>
         <p className="app__hint">
           Try <span className="app__hint--bold">listen</span>,{' '}
-          <span className="app__hint--bold">listen{AS_WORD_START_CHAR}</span> or{' '}
-          <span className="app__hint--bold">listen{USE_ALL_CHAR}</span>,{' '}
+          <span className="app__hint--bold">listen{AS_WORD_START_CHAR}</span>,{' '}
+          <span className="app__hint--bold">listen{USE_ALL_CHAR}</span> or{' '}
           <span className="app__hint--bold">ha{WILDCARD_CHAR}e</span>
         </p>
         <TextInput handleSubmit={onTextInputSubmit} />
