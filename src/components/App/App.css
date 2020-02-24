@@ -31,7 +31,7 @@
   font-weight: 900;
 }
 
-.app__results {
+.app__resulttext {
   text-align: center;
   color: var(--text-dark);
   margin: 1.75rem 0 0;
