@@ -66,7 +66,7 @@ function App() {
     duration = Math.round(performance.now() - start)
   }
 
-  let results = error
+  let results = ''
   if (!error) {
     results = words ? 'Found ' + words.length + ' results in ' + duration + 'ms' : ''
     if (useAllLetters) {
@@ -84,7 +84,7 @@ function App() {
           <span className="app__hint--bold">listen{USE_ALL_CHAR}</span> or{' '}
           <span className="app__hint--bold">ha{WILDCARD_CHAR}e</span>
         </p>
-        <TextInput handleSubmit={onTextInputSubmit} />
+        <TextInput handleSubmit={onTextInputSubmit} error={error} />
       </div>
       <p className="app__results">{results}</p>
       <WordList words={words} duration={duration} />

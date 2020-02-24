@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './TextInput.css'
 
-function TextInput({ handleSubmit }) {
+function TextInput({ handleSubmit, error }) {
   const [letters, setLetters] = useState('')
 
   const saveToState = e => {
@@ -45,6 +45,7 @@ function TextInput({ handleSubmit }) {
       <button type="submit" className="textInputForm__submit">
         GO
       </button>
+      {error && <p className="textInputForm__error">{error}</p>}
     </form>
   )
 }

@@ -8,7 +8,8 @@
   /* Blue Theme */
   --primary-light: #f1f2f3;
   --primary-dark: #193549;
-  --text-dark: ##112533;
+  --text-dark: #112533;
+  --text-error: #cb2d3e;
   --accent: #8c9aa4;
 }
 
