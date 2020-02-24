@@ -14,7 +14,10 @@ function App() {
   const [dictionary, setDictionary] = useState(null)
   const [inputString, setInputString] = useState('')
   const [error, setError] = useState('')
+  const [words, setWords] = useState(undefined)
+  const [resultText, setResultText] = useState('')
 
+  // on first render load the dictionary
   useEffect(() => {
     loadDictionary().then(dictionary => setDictionary(dictionary))
   }, [])
@@ -41,35 +44,39 @@ function App() {
     setError('')
   }
 
-  let words = undefined
-  let duration = 0
-  const wildcardFound =
-    inputString.indexOf(WILDCARD_CHAR) !== -1 || inputString.indexOf(AS_WORD_START_CHAR) !== -1
-  const useAllLetters = inputString.slice(-1) === USE_ALL_CHAR
-  const asWordStart = inputString.slice(-1) === AS_WORD_START_CHAR
+  // when inputString changes get the results from the dictionary
+  useEffect(() => {
+    let duration = 0
+    let results = undefined
+    const wildcardFound = inputString.indexOf(WILDCARD_CHAR) !== -1
+    const useAllLetters = inputString.slice(-1) === USE_ALL_CHAR
+    const asWordStart = inputString.slice(-1) === AS_WORD_START_CHAR
 
-  if (!error && dictionary && inputString.length > 0) {
-    const start = performance.now()
-
-    if (wildcardFound) {
-      //TODO: fails when something like "l.st*" is passed
+    if (!error && dictionary && inputString.length > 0) {
+      const start = performance.now()
       if (asWordStart) {
-        words = dictionary.getWordsBeginning(inputString, WILDCARD_CHAR)
-      } else words = dictionary.getWordMatches(inputString, WILDCARD_CHAR)
+        results = dictionary.getWordsBeginning(inputString, WILDCARD_CHAR)
+        setWords(results)
+      } else if (wildcardFound) {
+        results = dictionary.getWordMatches(inputString, WILDCARD_CHAR)
+        setWords(results)
+      } else {
+        results = dictionary.getAnagrams(inputString, useAllLetters ? inputString.length - 1 : 3)
+        setWords(results)
+      }
+      duration = Math.round(performance.now() - start)
     } else {
-      words = dictionary.getAnagrams(inputString, useAllLetters ? inputString.length - 1 : 3)
+      setWords(undefined)
     }
 
-    duration = Math.round(performance.now() - start)
-  }
-
-  let resultText = ''
-  if (!error) {
-    resultText = words ? 'Found ' + words.length + ' results in ' + duration + 'ms' : ''
-    if (useAllLetters) {
-      resultText = resultText + ' using all letters'
+    if (!error) {
+      let resultText = results ? 'Found ' + results.length + ' results in ' + duration + 'ms' : ''
+      setResultText(resultText)
+      if (useAllLetters) {
+        setResultText(resultText + ' using all letters')
+      }
     }
-  }
+  }, [inputString])
 
   return (
     <div className="app">
@@ -84,7 +91,7 @@ function App() {
         <TextInput handleSubmit={onTextInputSubmit} error={error} />
       </div>
       <p className="app__resulttext">{resultText}</p>
-      <WordList words={words} duration={duration} />
+      <WordList words={words} />
     </div>
   )
 }
