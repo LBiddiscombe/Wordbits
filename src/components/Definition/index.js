@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getDefinition } from '../../modules/api'
+import api from '../../modules/api'
 import './Definition.css'
 
 function Definition(props) {
@@ -8,7 +8,7 @@ function Definition(props) {
   const [definitions, setDefinitions] = useState(null)
 
   useEffect(() => {
-    getDefinition(props.word)
+    api.getDefinition(props.word)
       .then(({ word, phonetic, definitions }) => {
         setWord(word)
         setPhonetic(phonetic)

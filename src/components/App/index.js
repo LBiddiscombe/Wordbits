@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
+import NProgress from 'nprogress'
 import './nprogress.css'
 import WordList from '../WordList'
 import TextInput from '../TextInput'
-import { validateSearchString, executeSearch } from '../../modules/Dictionary'
-import { loadDictionary } from '../../modules/api'
+import { loadDictionary, validateSearchString, executeSearch } from '../../modules/Dictionary'
+import api from '../../modules/api'
 
 function App() {
-  const [dictionary, setDictionary] = useState(null)
   const [inputString, setInputString] = useState('')
   const [error, setError] = useState('')
   const [words, setWords] = useState(undefined)
@@ -15,7 +15,11 @@ function App() {
 
   // on first render load the dictionary
   useEffect(() => {
-    loadDictionary().then(dictionary => setDictionary(dictionary))
+    NProgress.start()
+    api.getWords().then(words => {
+      loadDictionary(words)
+      NProgress.done()
+    })
   }, [])
 
   const onTextInputSubmit = value => {
@@ -26,8 +30,8 @@ function App() {
 
   // when inputString changes get the results from the dictionary
   useEffect(() => {
-    const [words, resultText] = executeSearch(dictionary, inputString)
-    setWords(words)
+    const { results, resultText } = executeSearch(inputString)
+    setWords(results)
     setResultText(resultText)
   }, [inputString])
 
@@ -41,7 +45,7 @@ function App() {
         <TextInput handleSubmit={onTextInputSubmit} error={error} />
       </div>
       <p className="app__resulttext">{resultText}</p>
-      <WordList words={words} />
+      {words && <WordList words={words} />}
     </div>
   )
 }
