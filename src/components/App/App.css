@@ -26,11 +26,6 @@
   margin: 0;
 }
 
-.app__hint--bold {
-  font-size: 1.3rem;
-  font-weight: 900;
-}
-
 .app__resulttext {
   text-align: center;
   color: var(--text-dark);
