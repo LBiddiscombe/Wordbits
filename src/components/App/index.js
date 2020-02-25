@@ -45,7 +45,7 @@ function App() {
         <TextInput handleSubmit={onTextInputSubmit} error={error} />
       </div>
       <p className="app__resulttext">{resultText}</p>
-      {words && <WordList words={words} />}
+      <WordList words={words} />
     </div>
   )
 }
