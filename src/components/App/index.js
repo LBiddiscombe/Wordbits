@@ -3,6 +3,7 @@ import './App.css'
 import './nprogress.css'
 import WordList from '../WordList'
 import TextInput from '../TextInput'
+import { validateSearch } from '../../modules/Dictionary'
 import { loadDictionary } from '../../modules/api'
 
 const WILDCARD_CHAR = '.'
@@ -23,25 +24,9 @@ function App() {
   }, [])
 
   const onTextInputSubmit = value => {
-    const wildcardCount = (value.match(/\./g) || []).length
-    if (wildcardCount > MAX_WILDCARDS) {
-      setError(`Max ${MAX_WILDCARDS} wildcards allowed`)
-      return
-    }
-
-    const beginsWithCount = (value.match(/\*/g) || []).length
-    if (beginsWithCount > 1) {
-      setError(`Only 1 begins with (${AS_WORD_START_CHAR}) wildcard allowed`)
-      return
-    }
-
-    if (beginsWithCount === 1 && value.length - wildcardCount - 1 <= 1) {
-      setError(`At least 2 letters required for prefix search`)
-      return
-    }
-
-    setInputString(value)
-    setError('')
+    const error = validateSearch(value)
+    setError(error)
+    if (!error) setInputString(value)
   }
 
   // when inputString changes get the results from the dictionary
