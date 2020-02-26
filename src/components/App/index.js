@@ -9,7 +9,7 @@ import api from '../../modules/api'
 
 function App() {
   const [error, setError] = useState('')
-  const [words, setWords] = useState(undefined)
+  const [words, setWords] = useState([])
   const [resultText, setResultText] = useState('')
 
   // on first render load the dictionary
