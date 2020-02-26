@@ -32,13 +32,15 @@ const validateSearchString = searchString => {
 }
 
 const searchDictionary = searchString => {
-  let duration = 0
-  let results = undefined
+  let error = ''
+  let results = []
   let resultText = ''
+  let duration = 0
 
-  const error = validateSearchString(searchString)
+  if (!searchString) return { error, results, resultText }
+  if (!dictionary) return { error, results, resultText: 'waiting for dictionary' }
 
-  if (!dictionary) return { error, results: null, resultText: 'waiting for dictionary' }
+  error = validateSearchString(searchString)
 
   const wildcardFound = searchString.indexOf(WILDCARD_CHAR) !== -1
   const useAllLetters = searchString.slice(-1) === USE_ALL_CHAR
