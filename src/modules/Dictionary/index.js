@@ -31,18 +31,20 @@ const validateSearchString = searchString => {
   return ''
 }
 
-const executeSearch = searchString => {
+const searchDictionary = searchString => {
   let duration = 0
   let results = undefined
   let resultText = ''
 
-  if (!dictionary) return { results: null, resultText: 'waiting for dictionary' }
+  const error = validateSearchString(searchString)
+
+  if (!dictionary) return { error, results: null, resultText: 'waiting for dictionary' }
 
   const wildcardFound = searchString.indexOf(WILDCARD_CHAR) !== -1
   const useAllLetters = searchString.slice(-1) === USE_ALL_CHAR
   const asWordStart = searchString.slice(-1) === AS_WORD_START_CHAR
 
-  if (dictionary && searchString.length > 0) {
+  if (!error && dictionary && searchString.length > 0) {
     const start = performance.now()
     if (asWordStart) {
       results = getWordsBeginning(searchString, WILDCARD_CHAR)
@@ -59,7 +61,7 @@ const executeSearch = searchString => {
       useAllLetters ? ' using all letters' : ''
     }`
 
-  return { results, resultText }
+  return { error, results, resultText }
 }
 
 // Inspired by https://github.com/bluelovers/trie-prefix-tree
@@ -155,11 +157,4 @@ const getWordsBeginning = (prefix, wildcard) => {
 
 const byLength = (a, b) => b.length - a.length || a.localeCompare(b)
 
-export {
-  loadDictionary,
-  validateSearchString,
-  executeSearch,
-  getAnagrams,
-  getWordsBeginning,
-  getWordMatches
-}
+export { loadDictionary, validateSearchString, searchDictionary }
