@@ -58,7 +58,7 @@ const searchDictionary = searchString => {
     duration = Math.round(performance.now() - start)
   }
 
-  if (results)
+  if (results.length > 0)
     resultText = `Found  ${results.length} results in ${duration}ms ${
       useAllLetters ? ' using all letters' : ''
     }`

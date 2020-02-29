@@ -22,10 +22,13 @@ function App() {
   }, [])
 
   const onTextInputSubmit = value => {
-    const { error, results, resultText } = searchDictionary(value)
-    setError(error)
-    setWords(results)
-    setResultText(resultText)
+    if (value) setResultText('Searching...')
+    setTimeout(() => {
+      const { error, results, resultText } = searchDictionary(value)
+      setError(error)
+      setWords(results)
+      setResultText(resultText)
+    }, 0)
   }
 
   return (
