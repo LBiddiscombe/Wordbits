@@ -1,5 +1,5 @@
 async function searchDictionary(searchString) {
-  const response = await fetch('/wordbits?' + searchString)
+  const response = await fetch('/.netlify/functions/wordbits?' + searchString)
   const data = await response.json()
   return data
 }
