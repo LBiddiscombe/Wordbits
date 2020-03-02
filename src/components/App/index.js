@@ -4,7 +4,6 @@ import NProgress from 'nprogress'
 import './nprogress.css'
 import WordList from '../WordList'
 import TextInput from '../TextInput'
-import { loadDictionary, searchDictionary } from '../../modules/Dictionary'
 import api from '../../modules/api'
 
 function App() {
@@ -12,23 +11,23 @@ function App() {
   const [words, setWords] = useState([])
   const [resultText, setResultText] = useState('')
 
-  // on first render load the dictionary
-  useEffect(() => {
-    NProgress.start()
-    api.getWords().then(words => {
-      loadDictionary(words)
-      NProgress.done()
-    })
-  }, [])
-
   const onTextInputSubmit = value => {
-    if (value) setResultText('Searching...')
-    setTimeout(() => {
-      const { error, results, resultText } = searchDictionary(value)
+    if (!value) {
+      setError('')
+      setWords([])
+      setResultText('')
+      return
+    }
+
+    NProgress.start()
+    setResultText('Searching...')
+    api.searchDictionary(value).then(response => {
+      const { error, results, resultText } = response
       setError(error)
       setWords(results)
       setResultText(resultText)
-    }, 0)
+      NProgress.done()
+    })
   }
 
   return (

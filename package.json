@@ -2,8 +2,10 @@
   "name": "react-wordgame",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8888",
   "dependencies": {
     "framer-motion": "^1.8.4",
+    "netlify-lambda": "^1.6.3",
     "nprogress": "^0.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -14,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build && sw-precache-cra --config sw-config.js",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lambda:start": "netlify-lambda serve functions -p 8888"
   },
   "browserslist": [
     ">0.2%",

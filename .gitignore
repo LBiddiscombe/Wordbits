@@ -9,6 +9,9 @@
 # production
 /build
 
+#netlify functions
+/Lambda
+
 # misc
 .env
 .DS_Store

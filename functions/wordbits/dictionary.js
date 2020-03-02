@@ -5,6 +5,7 @@ const USE_ALL_CHAR = '/'
 const AS_WORD_START_CHAR = '*'
 const MAX_WILDCARDS = 7
 const dictionary = new Trie()
+const { performance } = require('perf_hooks')
 
 const loadDictionary = words => {
   words.forEach((word, index) => {

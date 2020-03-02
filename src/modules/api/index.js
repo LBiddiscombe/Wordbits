@@ -1,11 +1,7 @@
-async function getWords() {
-  const APIKEY = `${process.env.REACT_APP_MLAB_APIKEY}`
-  const url =
-    'https://api.mlab.com/api/1/databases/wordbits/collections/words/5c263989fb6fc00eee87d369?apiKey=' +
-    APIKEY
-  const response = await fetch(url)
+async function searchDictionary(searchString) {
+  const response = await fetch('/wordbits?' + searchString)
   const data = await response.json()
-  return data.words
+  return data
 }
 
 async function getDefinition(input) {
@@ -39,4 +35,4 @@ async function getDefinition(input) {
   }
 }
 
-export default { getWords, getDefinition }
+export default { searchDictionary, getDefinition }
