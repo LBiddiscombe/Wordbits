@@ -1,4 +1,4 @@
-const words = require('./wordbits/words.json')
+import words from './wordbits/words'
 import { loadDictionary, searchDictionary } from './wordbits/dictionary'
 
 loadDictionary(words)

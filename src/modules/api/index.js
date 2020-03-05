@@ -1,5 +1,11 @@
 async function searchDictionary(searchString) {
   const response = await fetch('/.netlify/functions/wordbits?' + searchString)
+  if (response.status !== 200) {
+    console.error(`Search Failed: ${response.status.toString()} - ${response.statusText}`)
+    return {
+      error: 'Search failed, try another'
+    }
+  }
   const data = await response.json()
   return data
 }

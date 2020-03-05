@@ -20,6 +20,7 @@ function App() {
     }
 
     NProgress.start()
+    setError('')
     setResultText('Searching...')
     api.searchDictionary(value).then(response => {
       const { error, results, resultText } = response

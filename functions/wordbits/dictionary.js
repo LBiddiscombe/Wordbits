@@ -1,11 +1,11 @@
 import Trie from './Trie'
+import { performance } from 'perf_hooks'
 
 const WILDCARD_CHAR = '.'
 const USE_ALL_CHAR = '/'
 const AS_WORD_START_CHAR = '*'
 const MAX_WILDCARDS = 7
 const dictionary = new Trie()
-const { performance } = require('perf_hooks')
 
 const loadDictionary = words => {
   words.forEach((word, index) => {
@@ -63,6 +63,7 @@ const searchDictionary = searchString => {
     resultText = `Found  ${results.length} results in ${duration}ms ${
       useAllLetters ? ' using all letters' : ''
     }`
+  if (results.length === 0 && !error) resultText = 'No words found'
 
   return { error, results, resultText }
 }

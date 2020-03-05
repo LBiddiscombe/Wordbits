@@ -17,7 +17,7 @@
     "build": "react-scripts build && sw-precache-cra --config sw-config.js && netlify-lambda build functions",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "lambda:start": "netlify-lambda serve functions -p 8888"
+    "lambda:start": "netlify-lambda serve functions -p 8888 -t 10"
   },
   "browserslist": [
     ">0.2%",
