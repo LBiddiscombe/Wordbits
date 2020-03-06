@@ -1,4 +1,5 @@
 import Trie from './Trie'
+import words from './words'
 import { performance } from 'perf_hooks'
 
 const WILDCARD_CHAR = '.'
@@ -7,12 +8,9 @@ const AS_WORD_START_CHAR = '*'
 const MAX_WILDCARDS = 7
 const dictionary = new Trie()
 
-const loadDictionary = words => {
-  words.forEach((word, index) => {
-    dictionary.add(word)
-  })
-  return dictionary
-}
+words.forEach((word, index) => {
+  dictionary.add(word)
+})
 
 const validateSearchString = searchString => {
   const wildcardCount = (searchString.match(/\./g) || []).length
@@ -47,9 +45,17 @@ const searchDictionary = searchString => {
   const useAllLetters = searchString.slice(-1) === USE_ALL_CHAR
   const asWordStart = searchString.slice(-1) === AS_WORD_START_CHAR
 
+  const numbersOnly = /^[0-9]*$/.test(searchString)
+  const wildcardsOnly = searchString.split(WILDCARD_CHAR).join('').length === 0
+  let searchLength = null
+  if (numbersOnly) searchLength = parseInt(searchString)
+  if (wildcardsOnly) searchLength = searchString.length
+
   if (!error && dictionary && searchString.length > 0) {
     const start = performance.now()
-    if (asWordStart) {
+    if (searchLength) {
+      results = words.filter(word => word.length === searchLength)
+    } else if (asWordStart) {
       results = getWordsBeginning(searchString, WILDCARD_CHAR)
     } else if (wildcardFound) {
       results = getWordMatches(searchString, WILDCARD_CHAR)

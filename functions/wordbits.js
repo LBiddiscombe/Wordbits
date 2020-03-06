@@ -1,7 +1,4 @@
-import words from './wordbits/words'
-import { loadDictionary, searchDictionary } from './wordbits/dictionary'
-
-loadDictionary(words)
+import { searchDictionary } from './wordbits/dictionary'
 
 exports.handler = async event => {
   const searchString = Object.keys(event.queryStringParameters)[0] || ''
