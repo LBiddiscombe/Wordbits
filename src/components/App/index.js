@@ -36,7 +36,7 @@ function App() {
       <div className="app__top">
         <h1 className="app__header">Wordbits</h1>
         <p className="app__hint">
-          Try <b>listen</b>, <b>listen*</b>, <b>listen/</b> or <b>ha.e</b>
+          Try <b>listen</b>, <b>listen*</b>, <b>listen/</b>, <b>ha.e</b> or <b>3</b>
         </p>
         <TextInput handleSubmit={onTextInputSubmit} error={error} />
       </div>
