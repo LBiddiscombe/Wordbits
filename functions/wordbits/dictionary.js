@@ -36,6 +36,9 @@ const searchDictionary = searchString => {
   let resultText = ''
   let duration = 0
 
+  const numbersOnly = /^[0-9]*$/.test(searchString)
+  if (!numbersOnly) searchString = expandSearchString(searchString)
+
   if (!searchString) return { error, results, resultText }
   if (!dictionary) return { error, results, resultText: 'waiting for dictionary' }
 
@@ -45,7 +48,6 @@ const searchDictionary = searchString => {
   const useAllLetters = searchString.slice(-1) === USE_ALL_CHAR
   const asWordStart = searchString.slice(-1) === AS_WORD_START_CHAR
 
-  const numbersOnly = /^[0-9]*$/.test(searchString)
   const wildcardsOnly = searchString.split(WILDCARD_CHAR).join('').length === 0
   let searchLength = null
   if (numbersOnly) searchLength = parseInt(searchString)
@@ -72,6 +74,16 @@ const searchDictionary = searchString => {
   if (results.length === 0 && !error) resultText = 'No words found'
 
   return { error, results, resultText }
+}
+
+const expandSearchString = searchString => {
+  let expandedSearchString = ''
+  for (const char of searchString) {
+    if (/^[1-9]*$/.test(char))
+      expandedSearchString = expandedSearchString + WILDCARD_CHAR.repeat(parseInt(char))
+    else expandedSearchString = expandedSearchString + char
+  }
+  return expandedSearchString
 }
 
 // Inspired by https://github.com/bluelovers/trie-prefix-tree
